@@ -1,0 +1,16 @@
+{
+  "tipo_transaccion": [
+    {
+      "identidad" : 2,
+      "nombre" : "Consignacion"
+    },
+    {
+      "identidad" : 1,
+      "nombre" : "Retiro"
+    },
+    {
+      "identidad" : 3,
+      "nombre" : "Transferencia"
+    }
+  ]
+}

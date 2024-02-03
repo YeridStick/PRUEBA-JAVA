@@ -1,0 +1,19 @@
+{
+  "tipo_identidad": [
+    {
+      "identidad" : 1,
+      "nombre" : "Cedula de Ciudadania",
+      "sigla" : "CC"
+    },
+    {
+      "identidad" : 2,
+      "nombre" : "Tarjata de identidad",
+      "sigla" : "TI"
+    },
+    {
+      "identidad" : 3,
+      "nombre" : "Cedula Extranjera",
+      "sigla" : "CE"
+    }
+  ]
+}

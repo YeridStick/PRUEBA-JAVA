@@ -1,0 +1,16 @@
+{
+  "estados_cuenta": [
+    {
+      "idestado" : 1,
+      "nombreestado" : "activa"
+    },
+    {
+      "idestado" : 3,
+      "nombreestado" : "cancelada"
+    },
+    {
+      "idestado" : 2,
+      "nombreestado" : "inactiva"
+    }
+  ]
+}

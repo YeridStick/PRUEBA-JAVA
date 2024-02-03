@@ -1,0 +1,12 @@
+{
+  "tipo_cuenta": [
+    {
+      "idcuenta" : 1,
+      "nombrecuenta" : "Ahorro"
+    },
+    {
+      "idcuenta" : 2,
+      "nombrecuenta" : "Corriente"
+    }
+  ]
+}
