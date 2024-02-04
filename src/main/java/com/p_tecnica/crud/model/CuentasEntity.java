@@ -30,7 +30,7 @@ public class CuentasEntity {
     private EstadosCuentaEntity estadosCuenta;
 
     @Column(name = "SALDO")
-    private Long saldo;
+    private Double saldo;
 
     @Column(name = "FECHA_CREACION")
     private LocalDateTime fCreacion;
@@ -45,5 +45,8 @@ public class CuentasEntity {
     @ManyToOne
     @JoinColumn(name = "CLIENTE_ID")
     private ClienteEntity clienteEntity ;
+
+    @Column(name = "CONTRASENA")
+    private String contrasena;
 
 }

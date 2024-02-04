@@ -12,5 +12,6 @@ public class CuentaEditDTO {
     private Long tipoCuenta;
     private BigDecimal saldo;
     private String idCliente;
+    private String contrasena;
     private Long idEstadoCuenta;
 }

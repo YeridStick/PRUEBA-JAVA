@@ -11,5 +11,6 @@ public class CuentaLoginDTO {
     private Long tipoCuenta;
     private BigDecimal saldo;
     private String idCliente;
+    private String contrasena;
     private Long idEstadoCuenta;
 }

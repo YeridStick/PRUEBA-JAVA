@@ -17,26 +17,29 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "TRANSACCIONES")
 public class TransaccionesEntity {
-    @Column(name = "ID_TRANSACCION")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
-    private Long idCuenta;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "ID_TRANSACCION")
+    private Long idTransaccion;
 
     @ManyToOne
-    @JoinColumn(name = "TIPO_TRANSACCION")
-    private  TipoTransccionEntity tipoTransccionEntity;
+    @JoinColumn(name = "TIPO_TRANSACCION_ID")
+    private TipoTransccionEntity tipoTransaccion;
 
     @Column(name = "VALOR_TRANSACCION")
     private Long valorTransaccion;
 
-    @Column(name = "FECHA_TRANSCCION")
-    private LocalDateTime fTransaccion;
+    @Column(name = "FECHA_TRANSACCION")
+    private LocalDateTime fechaTransaccion;
 
     @ManyToOne
-    @JoinColumn(name = "CUENTA_ID")
-    private  CuentasEntity cuentasEntity;
+    @JoinColumn(name = "CUENTA_ORIGEN_ID")
+    private CuentasEntity cuentaOrigen;
 
     @ManyToOne
-    @JoinColumn(name = "CUENTA_DESTINO")
-    private  CuentasEntity cuentasEntityDestino;
+    @JoinColumn(name = "CUENTA_DESTINO_ID")
+    private CuentasEntity cuentaDestino;
+
+    @Column(name = "GMF_PAGADO")
+    private Double gmfPagado;
 }

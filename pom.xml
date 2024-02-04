@@ -61,6 +61,12 @@
 			<artifactId>modelmapper</artifactId>
 			<version>3.1.1</version>
 		</dependency>
+
+		<!-- spring-boot-starter-security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -72,6 +78,7 @@
 				<configuration>
 					<excludes>
 						<exclude>com/p_tecnica/crud/config/*</exclude>
+						<exclude>com/p_tecnica/crud/config.**</exclude>
 						<exclude>com/p_tecnica/crud/constantes/*</exclude>
 						<exclude>com/p_tecnica/crud/dto/**/*</exclude>
 						<exclude>com/p_tecnica/crud/exception/*</exclude>

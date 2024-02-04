@@ -44,7 +44,7 @@ public class CuentaController {
 
     @GetMapping("tipo/listar")
     @Operation(summary = "Obtener listado de tipo de entidades", description = "Devuelve una lista de entidades")
-    public ResponseEntity<MensajeResponseRest> listCuentas(){
+    public ResponseEntity<MensajeResponseRest> listTipoCuentas(){
         return new ResponseEntity<>(tipoCuentaServices.listCuenta(), HttpStatus.OK);
     }
 

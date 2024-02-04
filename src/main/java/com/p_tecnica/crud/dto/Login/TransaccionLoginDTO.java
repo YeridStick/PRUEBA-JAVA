@@ -9,7 +9,8 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TransaccionLoginDTO {
     private Long valorTransaccion;
-    private Long tipoTransccionEntity;
+    private Long tipoTransaccionEntity;
     private String numeroCuenta;
     private String numeroCuentaDestino;
+    private String contrasena;
 }

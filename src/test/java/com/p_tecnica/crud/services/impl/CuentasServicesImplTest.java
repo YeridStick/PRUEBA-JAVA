@@ -17,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -26,6 +27,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class CuentasServicesImplTest {
+    @Mock
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     @Mock
     private Cuentasrepository cuentasrepository;
     @Mock
@@ -46,6 +49,7 @@ class CuentasServicesImplTest {
         cuentaLoginDTO.setIdCliente("123456789");
         cuentaLoginDTO.setTipoCuenta(1L);
         cuentaLoginDTO.setIdEstadoCuenta(1L);
+        cuentaLoginDTO.setContrasena("9122003.");
 
         // Crear objetos de prueba para los repositorios
         Optional<ClienteEntity> clienteEntity = Optional.of(new ClienteEntity());
@@ -55,16 +59,16 @@ class CuentasServicesImplTest {
         Optional<EstadosCuentaEntity> estadosCuenta = Optional.of(new EstadosCuentaEntity());
         estadosCuenta.get().setIdCuenta(1L);
         // Configurar mocks para los repositorios usando Mockito.mock
-        Mockito.when(clienteRepository.findById(Mockito.eq(cuentaLoginDTO.getIdCliente())))
+        Mockito.when(clienteRepository.findById(cuentaLoginDTO.getIdCliente()))
                 .thenReturn(clienteEntity);
-        Mockito.when(tipoCuentaRepository.findById(Mockito.eq(cuentaLoginDTO.getTipoCuenta())))
+        Mockito.when(tipoCuentaRepository.findById(cuentaLoginDTO.getTipoCuenta()))
                 .thenReturn(tipoCuenta);
-        Mockito.when(estadoCuentaRepository.findById(Mockito.eq(cuentaLoginDTO.getIdEstadoCuenta())))
+        Mockito.when(estadoCuentaRepository.findById(cuentaLoginDTO.getIdEstadoCuenta()))
                 .thenReturn(estadosCuenta);
 
         // Configurar mock para el modelMapper
         CuentasEntity cuentasEntity = new CuentasEntity();
-        cuentasEntity.setSaldo(400L);
+        cuentasEntity.setSaldo(4400.0);
         Mockito.when(modelMapper.map(Mockito.any(), Mockito.eq(CuentasEntity.class)))
                 .thenReturn(cuentasEntity);
 
@@ -88,6 +92,7 @@ class CuentasServicesImplTest {
         cuentaEditDTO.setIdCliente("123456789");
         cuentaEditDTO.setTipoCuenta(3L);
         cuentaEditDTO.setIdEstadoCuenta(4L);
+        cuentaEditDTO.setContrasena("9122003.");
 
         // Configurar mocks para los repositorios usando Mockito.when
         Optional<CuentasEntity> cuentaExistenteOptional = Optional.empty(); // Opcionalmente puedes establecer un valor presente
@@ -96,7 +101,7 @@ class CuentasServicesImplTest {
 
         CuentasEntity cuentaExistente = new CuentasEntity();
         cuentaExistente.setIdCuenta(1l);
-        cuentaExistente.setSaldo(4400L);
+        cuentaExistente.setSaldo(4400.0);
         ClienteEntity clienteEntity = new ClienteEntity();
         clienteEntity.setNumIdent("1234678");
         TipoCuentaEntity tipoCuenta = new TipoCuentaEntity();
@@ -121,7 +126,7 @@ class CuentasServicesImplTest {
 
         // Configurar mock para el modelMapper
         CuentasEntity cuentasEntity = new CuentasEntity();
-        cuentasEntity.setSaldo(400L);
+        cuentasEntity.setSaldo(4400.0);
         Mockito.when(modelMapper.map(Mockito.any(), Mockito.eq(CuentasEntity.class)))
                 .thenReturn(cuentasEntity);
 

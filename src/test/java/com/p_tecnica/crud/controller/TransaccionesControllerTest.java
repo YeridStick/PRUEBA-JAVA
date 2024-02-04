@@ -15,25 +15,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 @ExtendWith(MockitoExtension.class)
 class TransaccionesControllerTest {
+
     @Mock
     private TiposServices tipoTransaccionesServices;
+
     @Mock
     private TransaccionesServices transaccionesServices;
-    @InjectMocks TransaccionesController transaccionesController;
+
+    @InjectMocks
+    private TransaccionesController transaccionesController;
 
     @Test
     void crearTransaccion() {
-        // Crear un objeto de prueba para transaccionLoginDTO
         TransaccionLoginDTO transaccionLoginDTO = new TransaccionLoginDTO();
-        transaccionLoginDTO.setTipoTransccionEntity(1L);
-        transaccionLoginDTO.setNumeroCuenta("123456789");
-        transaccionLoginDTO.setNumeroCuentaDestino("12599986358");
-        transaccionLoginDTO.setValorTransaccion(400L);
-
-        // Crear un objeto de prueba para MensajeResponseRest
         MensajeResponseRest mensajeResponseRest = new MensajeResponseRest();
 
         Mockito.when(transaccionesServices.createTransaccion(Mockito.any(TransaccionLoginDTO.class)))
@@ -43,6 +39,8 @@ class TransaccionesControllerTest {
 
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertEquals(mensajeResponseRest, responseEntity.getBody());
+
+        Mockito.verify(transaccionesServices, Mockito.times(1)).createTransaccion(Mockito.any(TransaccionLoginDTO.class));
     }
 
     @Test
@@ -56,5 +54,7 @@ class TransaccionesControllerTest {
 
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertEquals(mensajeResponseRest, responseEntity.getBody());
+
+        Mockito.verify(tipoTransaccionesServices, Mockito.times(1)).lisTipoTransacciones();
     }
 }

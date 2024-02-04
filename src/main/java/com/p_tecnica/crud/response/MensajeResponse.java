@@ -21,7 +21,4 @@ public class MensajeResponse {
     private List<TipoTransccionEntity> tipoTransacciones;
     private TransaccionesEntity transaccion;
     private List<TipoTransccionEntity> transacciones;
-
-    /*private List<UserOutDTO> users;
-    private List<RolesOutDTO> rolesUser;*/
 }

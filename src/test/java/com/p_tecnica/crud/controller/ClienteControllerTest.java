@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class ClienteControllerTest {
+
     @Mock
     private ClienteService clienteService;
 
@@ -23,25 +24,19 @@ class ClienteControllerTest {
     private ClienteController clienteController;
 
     @Test
-    void createCliente() {
-        // Crear un objeto de prueba para ClienteEntityloginDTO
+    void crateCliente() {
         ClienteEntityloginDTO clienteEntityloginDTO = new ClienteEntityloginDTO();
-        // Establecer valores en clienteEntityloginDTO según sea necesario
 
-        // Crear un objeto de prueba para MensajeResponseRest
         MensajeResponseRest mensajeResponseRest = new MensajeResponseRest();
-        // Establecer valores en mensajeResponseRest según sea necesario
-
-        // Configurar el comportamiento del servicio mock
         Mockito.when(clienteService.crateCliente(Mockito.any(ClienteEntityloginDTO.class)))
                 .thenReturn(mensajeResponseRest);
 
-        // Llamar al método del controlador
         ResponseEntity<MensajeResponseRest> responseEntity = clienteController.crateCliente(clienteEntityloginDTO);
 
-        // Verificar resultados
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertEquals(mensajeResponseRest, responseEntity.getBody());
+
+        Mockito.verify(clienteService, Mockito.times(1)).crateCliente(Mockito.any(ClienteEntityloginDTO.class));
     }
 
     @Test
@@ -52,65 +47,59 @@ class ClienteControllerTest {
                 .thenReturn(mensajeResponseRest);
 
         ResponseEntity<MensajeResponseRest> responseEntity = clienteController.listCliente();
+
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertEquals(mensajeResponseRest, responseEntity.getBody());
+
+        Mockito.verify(clienteService, Mockito.times(1)).listCliente();
     }
 
     @Test
     void buscarCliente() {
+        String numIdent = "123456";
         MensajeResponseRest mensajeResponseRest = new MensajeResponseRest();
-        Mockito.when(clienteService.buscarCliente(Mockito.anyString()))
+
+        Mockito.when(clienteService.buscarCliente(numIdent))
                 .thenReturn(mensajeResponseRest);
 
-        ResponseEntity<MensajeResponseRest> responseEntity = clienteController.buscarCliente("123456789");
+        ResponseEntity<MensajeResponseRest> responseEntity = clienteController.buscarCliente(numIdent);
 
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertEquals(mensajeResponseRest, responseEntity.getBody());
+
+        Mockito.verify(clienteService, Mockito.times(1)).buscarCliente(numIdent);
     }
 
     @Test
     void actualizarCliente() {
-        // Crear un objeto de prueba para ClienteEntityloginDTO
         ClienteEntityloginDTO clienteEntityloginDTO = new ClienteEntityloginDTO();
-        // Establecer valores en clienteEntityloginDTO según sea necesario
 
-        // Crear un objeto de prueba para MensajeResponseRest
         MensajeResponseRest mensajeResponseRest = new MensajeResponseRest();
-        // Establecer valores en mensajeResponseRest según sea necesario
 
-        // Configurar el comportamiento del servicio mock
         Mockito.when(clienteService.actualizarCliente(Mockito.any(ClienteEntityloginDTO.class)))
                 .thenReturn(mensajeResponseRest);
 
-        // Llamar al método del controlador
         ResponseEntity<MensajeResponseRest> responseEntity = clienteController.actualizarCliente(clienteEntityloginDTO);
 
-        // Verificar resultados
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertEquals(mensajeResponseRest, responseEntity.getBody());
+
+        Mockito.verify(clienteService, Mockito.times(1)).actualizarCliente(Mockito.any(ClienteEntityloginDTO.class));
     }
 
     @Test
     void eliminarCliente() {
-        // Establecer un número de identificación de cliente para el caso de prueba
-        String numIdent = "123456789";
-
-        // Crear un objeto de prueba para MensajeResponseRest
+        String numIdent = "123456";
         MensajeResponseRest mensajeResponseRest = new MensajeResponseRest();
-        // Establecer valores en mensajeResponseRest según sea necesario
 
-        // Configurar el comportamiento del servicio mock
-        Mockito.when(clienteService.eliminarCliente(Mockito.eq(numIdent)))
+        Mockito.when(clienteService.eliminarCliente(numIdent))
                 .thenReturn(mensajeResponseRest);
 
-        // Llamar al método del controlador
         ResponseEntity<MensajeResponseRest> responseEntity = clienteController.eliminarCliente(numIdent);
 
-        // Verificar resultados
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertEquals(mensajeResponseRest, responseEntity.getBody());
 
-        // Verificar que el método eliminarCliente del servicio mock se llamó exactamente una vez
         Mockito.verify(clienteService, Mockito.times(1)).eliminarCliente(numIdent);
     }
 }
